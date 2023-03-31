@@ -5056,7 +5056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 1619351161}
   totalPlanetHealth: 5
-  totalEnemies: 1
+  totalEnemies: 50
   planetBar: {fileID: 1263200635}
   mineBar: {fileID: 63744059}
   mineThreshold: 5
