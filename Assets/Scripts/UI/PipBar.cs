@@ -11,6 +11,7 @@ public class PipBar : MonoBehaviour
         get { return pipLevel; }
         set 
         {
+            //prevents bar level from being lower than 0 or higher than 5
             if(value <= pips.Length && value >= 0)
             {
                 pipLevel = value;
@@ -44,6 +45,7 @@ public class PipBar : MonoBehaviour
         pips[PipLevel].SetActive(false);
     }
 
+    //sets bar to 0 pips
     public void EmptyBar()
     {
         foreach(var pip in pips)

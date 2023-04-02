@@ -24,6 +24,7 @@ public abstract class Alien : MonoBehaviour
         }
     }
 
+    //starts death sequence on collision, sends info about cause of death to game manager if needed
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
@@ -63,5 +64,6 @@ public abstract class Alien : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //defined in child classes
     protected abstract void Maneuver();
 }

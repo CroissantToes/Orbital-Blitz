@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     private Controls controls;
-    private Vector2 move;
+    private Vector2 move; //vector representing movement input
     public float moveSpeed;
 
     [Header("Projectile")]
@@ -25,13 +25,14 @@ public class PlayerController : MonoBehaviour
     [Header("Boosters")]
     public GameObject boosterRight;
     public GameObject boosterLeft;
-    public float boostFlickerScale;
-    private bool boostExpand = false;
+    public float boostFlickerScale; //booster object scale oscillates between 1 and this number when flickering
+    private bool boostExpand = false; //if the booster is expanding or shrinking
 
     private Vector2 origin = new Vector2(0f, 0f);
 
     private void Awake()
     {
+        //assigns actions to controls
         controls = new Controls();
         controls.Default.Movement.performed += ctx => Fly(ctx);
         controls.Default.Movement.canceled += ctx => StopFlying();
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //manages rocket booster animations
         if (move.x > 0)
         {
             boosterLeft.SetActive(true);
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //actual movement around planet
         float movement = move.x * moveSpeed * Time.deltaTime;
         transform.RotateAround(origin, Vector3.back, movement);
     }
@@ -90,12 +93,14 @@ public class PlayerController : MonoBehaviour
         controls.Default.Disable();
     }
 
+    //sets move vector value
     private void Fly(InputAction.CallbackContext ctx)
     {
         move = ctx.ReadValue<Vector2>();
         SoundManager.Instance.PlayBooster();
     }
 
+    //stops player movement
     private void StopFlying()
     {
         move = Vector2.zero;

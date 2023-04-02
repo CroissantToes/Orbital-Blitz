@@ -15,6 +15,8 @@ public class AlienBasic : Alien
         directionSwitchTimer = directionSwitchTime;
     }
 
+    /* Alien orbits to the side a short distance (based on speed over time,
+     * not actual distance), then does the same in the other direction.*/
     protected override void Maneuver()
     {
         float movement = maneuverSpeed * Time.deltaTime;

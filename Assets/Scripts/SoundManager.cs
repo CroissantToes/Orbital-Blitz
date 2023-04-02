@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour
         shotFX.Play();
     }
 
+    //booster sfx are muted because they don't sound right, but they still technically play
     public void PlayBooster()
     {
         boostFX.volume = 1.0f;

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //lazy singleton
     public static GameManager Instance;
 
     [Header("References")]
@@ -20,17 +21,20 @@ public class GameManager : MonoBehaviour
     [Header("Bars")]
     public PipBar planetBar;
     public PipBar mineBar;
-    public int mineThreshold;
-    private int mineCharge = 0;
+    public int mineThreshold; //number of kills needed to charge mine
+    private int mineCharge = 0; //charge level
 
+    //number of enemies that have not been spawned
     [HideInInspector] public int enemiesLeftToSpawn;
 
+    //number of enemies that have not been destroyed
     private int enemiesRemaining;
     public int EnemiesRemaining 
     { 
         get { return enemiesRemaining; }
         set
         {
+            //sets the enemy counter in the HUD when enemies are destroyed
             enemiesRemaining = value;
             if(enemiesRemaining < 0)
             {
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //checks win/lose state
         if (currentPlanetHealth <= 0 && gameOver == false)
         {
             gameOver = true;
@@ -142,6 +147,7 @@ public class GameManager : MonoBehaviour
         StopGame();
     }
 
+    //When an enemy dies, manages game state based on cause of death
     public void OnEnemyDeath(CauseOfDeath cause)
     {
         if(cause == CauseOfDeath.projectile)
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Resets mine charge
     public void OnMineUsed()
     {
         mineCharge = 0;

@@ -27,6 +27,10 @@ public class AlienAdvanced : Alien
         directionSwitchTimer = longDirectionSwitchTime;
     }
 
+    /* Alien orbits to the side a long distance (based on speed over time,
+     * not actual distance), then the other way a short distance, 
+     * then back in the initial direction a long distance. This makes a sort of elongated
+     * Z shape. It then makes this Z shape in the other direction.*/
     protected override void Maneuver()
     {
         float movement = maneuverSpeed * Time.deltaTime;
